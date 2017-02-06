@@ -27,7 +27,14 @@ namespace BuyingACar
     {
         public static int[] nbMonths(int startPriceOld, int startPriceNew, int savingperMonth, float percentLossByMonth)
         {
-            throw new NotImplementedException();
+            var month = 0;
+            var leftOverMoney = 0;
+            if (startPriceOld >= startPriceNew)
+            {
+                leftOverMoney = startPriceOld - startPriceNew;
+            }
+
+            return new int[] {month, leftOverMoney};
         }
     }
 }
