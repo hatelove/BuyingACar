@@ -12,6 +12,7 @@ public class BuyCarTests
         Assert.AreEqual(r, BuyCar.nbMonths(12000, 8000, 1000, 1.5f));
     }
 
+    [Ignore("one and only one red light")]
     [Test]
     public void nbMonths_old_12000_new_8000_perMonthSave_1000_percentLoss_1point5()
     {
