@@ -66,12 +66,11 @@ namespace BuyingACar
                 {
                     month++;
                     savingAmount += savingperMonth;
-                    if (month % 2 != 0)
-                    {
-                        oldOneValue *= 1 - (percentLossByMonth / 100);
-                        newOneValue *= 1 - (percentLossByMonth / 100);
-                        leftOverMoney = oldOneValue - newOneValue + savingAmount;
-                    }
+
+                    oldOneValue *= 1 - (percentLossByMonth / 100);
+                    newOneValue *= 1 - (percentLossByMonth / 100);
+                    leftOverMoney = oldOneValue - newOneValue + savingAmount;
+
                 } while (leftOverMoney < 0);
             }
 
