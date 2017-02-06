@@ -1,6 +1,5 @@
 ﻿using BuyingACar;
 using NUnit.Framework;
-using NUnit.Framework.Internal;
 using System;
 
 [TestFixture]
@@ -65,6 +64,7 @@ namespace BuyingACar
                 double ratio = 1 - (double)((decimal)percentLossByMonth / 100);
                 do
                 {
+                    month++;
                     savingAmount += savingperMonth;
 
                     var lossRatioBiMonth = month % 2 == 0 ? 0.005d : 0;
