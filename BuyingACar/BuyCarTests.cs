@@ -46,35 +46,28 @@ namespace BuyingACar
 {
     internal class BuyCar
     {
+        private const double LossRatioBiMonth = 0.005d;
+
         public static int[] nbMonths(int startPriceOld, int startPriceNew, int savingperMonth, float percentLossByMonth)
         {
-            var month = 0;
-
-            double leftOverMoney = 0;
             double oldOneValue = startPriceOld;
             double newOneValue = startPriceNew;
+            var month = 0;
             var savingAmount = 0;
 
-            if (startPriceOld >= startPriceNew)
+            double ratio = 1 - (double)((decimal)percentLossByMonth / 100);
+            while ((oldOneValue + savingAmount) < newOneValue)
             {
-                leftOverMoney = startPriceOld - startPriceNew;
-            }
-            else
-            {
-                double ratio = 1 - (double)((decimal)percentLossByMonth / 100);
-                do
-                {
-                    month++;
-                    savingAmount += savingperMonth;
+                month++;
+                savingAmount += savingperMonth;
 
-                    var lossRatioBiMonth = month % 2 == 0 ? 0.005d : 0;
-                    ratio -= lossRatioBiMonth;
+                ratio -= month % 2 == 0 ? LossRatioBiMonth : 0;
 
-                    oldOneValue *= ratio;
-                    newOneValue *= ratio;
-                    leftOverMoney = oldOneValue - newOneValue + savingAmount;
-                } while (leftOverMoney < 0);
+                oldOneValue *= ratio;
+                newOneValue *= ratio;
             }
+
+            var leftOverMoney = oldOneValue + savingAmount - newOneValue;
 
             return new int[] { month, (int)Math.Round(leftOverMoney, 0) };
         }
