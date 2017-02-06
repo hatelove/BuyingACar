@@ -6,7 +6,7 @@ using System;
 public class BuyCarTests
 {
     [Test]
-    public void nbMonths_old_2000_new_8000_perMonthSave_1000_percentLoss_1point5()
+    public void nbMonths_old_12000_new_8000_perMonthSave_1000_percentLoss_1point5()
     {
         int[] r = new int[] { 0, 4000 };
         Assert.AreEqual(r, BuyCar.nbMonths(12000, 8000, 1000, 1.5f));
@@ -14,7 +14,7 @@ public class BuyCarTests
 
     [Ignore("one and only one red light")]
     [Test]
-    public void nbMonths_old_12000_new_8000_perMonthSave_1000_percentLoss_1point5()
+    public void nbMonths_old_2000_new_8000_perMonthSave_1000_percentLoss_1point5()
     {
         int[] r = new int[] { 6, 766 };
         Assert.AreEqual(r, BuyCar.nbMonths(2000, 8000, 1000, 1.5f));
