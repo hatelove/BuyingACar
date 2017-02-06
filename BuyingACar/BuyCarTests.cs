@@ -31,7 +31,7 @@ public class BuyCarTests
         Assert.AreEqual(r, BuyCar.nbMonths(7000, 8000, 985, 1.5f));
     }
 
-    [Ignore("one and only one red light")]
+    [Ignore("refactor first")]
     [Test]
     public void nbMonths_old_2000_new_8000_perMonthSave_1000_percentLoss_1point5()
     {
@@ -51,6 +51,7 @@ namespace BuyingACar
         public static int[] nbMonths(int startPriceOld, int startPriceNew, int savingperMonth, float percentLossByMonth)
         {
             var month = 0;
+
             double leftOverMoney = 0;
             double oldOneValue = startPriceOld;
             double newOneValue = startPriceNew;
@@ -67,10 +68,11 @@ namespace BuyingACar
                     month++;
                     savingAmount += savingperMonth;
 
-                    oldOneValue *= 1 - (percentLossByMonth / 100);
-                    newOneValue *= 1 - (percentLossByMonth / 100);
-                    leftOverMoney = oldOneValue - newOneValue + savingAmount;
+                    double ratio = 1 - (double)((decimal)percentLossByMonth / 100);
 
+                    var diff = (oldOneValue - newOneValue) * ratio;
+
+                    leftOverMoney = diff + savingAmount;
                 } while (leftOverMoney < 0);
             }
 
